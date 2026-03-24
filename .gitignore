@@ -1,0 +1,20 @@
+# 資料庫
+**/db_data/*
+!**/db_data/.gitkeep
+
+# 網站檔案
+**/html/*
+!**/html/.gitkeep
+
+# NPM 資料
+npm-proxy/data/
+npm-proxy/letsencrypt/
+
+# 環境變數與敏感資訊
+.env
+*.env
+.env.*
+
+# OS 產生的檔案
+.DS_Store
+Thumbs.db

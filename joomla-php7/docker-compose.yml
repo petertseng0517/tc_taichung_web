@@ -1,0 +1,43 @@
+networks:
+  web-proxy:
+    external: true
+
+services:
+  web:
+    build: .
+    container_name: joomla7_web
+    volumes:
+      - ./html:/var/www/html
+      - ./config/custom.ini:/usr/local/etc/php/conf.d/custom.ini
+    networks:
+      - web-proxy
+      - default
+    depends_on:
+      - db
+
+  db:
+    image: mysql:5.7
+    platform: linux/x86_64
+    container_name: joomla7_db
+    volumes:
+      - ./db_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root_secret
+      MYSQL_DATABASE: hlm_home26
+      MYSQL_USER: joomla_user
+      MYSQL_PASSWORD: joomla_pass
+    networks:
+      - default
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    platform: linux/amd64
+    container_name: joomla7_pma
+    ports:
+      - "8082:80"
+    environment:
+      PMA_HOST: joomla7_db
+    networks:
+      - default
+    depends_on:
+      - db
