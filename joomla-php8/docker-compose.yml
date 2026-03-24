@@ -22,10 +22,10 @@ services:
     volumes:
       - ./db_data:/var/lib/mysql
     environment:
-      MYSQL_ROOT_PASSWORD: root_secret
-      MYSQL_DATABASE: hlm_home26
-      MYSQL_USER: joomla_user
-      MYSQL_PASSWORD: joomla_pass
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     networks:
       - default
 
